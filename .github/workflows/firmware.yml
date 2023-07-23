@@ -105,7 +105,7 @@ jobs:
       - name: Download Ultra DFU
         uses: actions/download-artifact@v3
         with:
-          name: dfu-ultra-app
+          name: ultra-dfu-app
           path: dfu-app-artifacts
       - name: Upload Ultra DFU
         uses: actions/upload-release-asset@v1
@@ -119,7 +119,7 @@ jobs:
       - name: Download Lite DFU
         uses: actions/download-artifact@v3
         with:
-          name: dfu-lite-app
+          name: lite-dfu-app
           path: dfu-app-artifacts
       - name: Upload Lite DFU
         uses: actions/upload-release-asset@v1
