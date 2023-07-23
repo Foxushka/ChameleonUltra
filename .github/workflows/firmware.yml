@@ -76,6 +76,7 @@ jobs:
           upload_url: ${{ env.UPLOAD_URL }}
           asset_name: ${{ matrix.device_type }}-dfu-app
           asset_path: firmware/objects/dfu-app.zip
+          asset_content_type: application/zip
       - name: Upload dfu full image
         uses: actions/upload-artifact@v3
         with:
