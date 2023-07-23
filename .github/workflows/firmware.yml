@@ -81,6 +81,7 @@ jobs:
           name: ${{ matrix.device_type }}-dfu-full
           path: firmware/objects/dfu-full/*
   create_release:
+    permissions: write-all
     name: Create Pre-Release with dfu app images
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
