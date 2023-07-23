@@ -107,6 +107,9 @@ jobs:
         with:
           name: ultra-dfu-app
           path: dfu-app-artifacts
+      - name: Compress
+        run: |
+          zip -r ./dfu-app-artifacts/dfu-app.zip ./dfu-app-artifacts/*
       - name: Upload Ultra DFU
         uses: actions/upload-release-asset@v1
         env:
@@ -116,11 +119,17 @@ jobs:
           asset_path: ./dfu-app-artifacts/dfu-app.zip
           asset_name: ultra-dfu-app.zip
           asset_content_type: application/zip
+      - name: Clear
+        run: |
+          rm -rf ./dfu-app-artifacts/
       - name: Download Lite DFU
         uses: actions/download-artifact@v3
         with:
           name: lite-dfu-app
           path: dfu-app-artifacts
+      - name: Compress
+        run: |
+          zip -r ./dfu-app-artifacts/dfu-app.zip ./dfu-app-artifacts/*
       - name: Upload Lite DFU
         uses: actions/upload-release-asset@v1
         env:
