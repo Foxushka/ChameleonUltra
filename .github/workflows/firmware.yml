@@ -109,7 +109,7 @@ jobs:
           path: dfu-app-artifacts
       - name: Compress
         run: |
-          zip -r ./dfu-app-artifacts/dfu-app.zip ./dfu-app-artifacts/*
+          zip --junk-paths -0 -r ./dfu-app-artifacts/dfu-app.zip ./dfu-app-artifacts/*
       - name: Upload Ultra DFU
         uses: actions/upload-release-asset@v1
         env:
@@ -129,7 +129,7 @@ jobs:
           path: dfu-app-artifacts
       - name: Compress
         run: |
-          zip -r ./dfu-app-artifacts/dfu-app.zip ./dfu-app-artifacts/*
+          zip --junk-paths -0 -r ./dfu-app-artifacts/dfu-app.zip ./dfu-app-artifacts/*
       - name: Upload Lite DFU
         uses: actions/upload-release-asset@v1
         env:
