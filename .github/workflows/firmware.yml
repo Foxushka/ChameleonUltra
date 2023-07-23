@@ -71,7 +71,7 @@ jobs:
           unzip firmware/objects/dfu-app.zip -d firmware/objects/dfu-app
           unzip firmware/objects/dfu-full.zip -d firmware/objects/dfu-full
       - name: Upload dfu app image
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ env.UPLOAD_URL }}
           name: ${{ matrix.device_type }}-dfu-app
