@@ -48,6 +48,11 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
+      - name: Get upload URL
+        shell: bash
+        run: |
+          upload_url=$(curl -sL https://api.github.com/repos/actions/checkout/releases/latest | jq -r '.upload_url')
+          echo UPLOAD_URL=$upload_url >> $GITHUB_ENV
       - name: Build firmware
         env:
           repo: ${{ github.repository }}
@@ -68,6 +73,7 @@ jobs:
       - name: Upload dfu app image
         uses: actions/upload-artifact@v3
         with:
+          upload_url: ${{ env.UPLOAD_URL }}
           name: ${{ matrix.device_type }}-dfu-app
           path: firmware/objects/dfu-app/*
       - name: Upload dfu full image
