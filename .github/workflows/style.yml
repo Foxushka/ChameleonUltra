@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-      - run: apt update && apt install -y astyle python3-autopep8
+      - run: sudo apt update && sudo apt install -y astyle python3-autopep8
       - run: ./resource/tools/make_style.sh
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
