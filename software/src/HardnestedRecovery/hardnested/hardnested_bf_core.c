@@ -314,8 +314,8 @@ uint64_t CRACK_STATES_BITSLICED(uint32_t cuid, uint8_t *best_first_bytes, statel
         bitsliced_even_states[bitsliced_blocks] = lstate_p;
         // bitsliced_even_feedback[bitsliced_blocks] = bs_ones;
         bitsliced_even_feedback[bitsliced_blocks] = lstate_p[(47 - 0) / 2].value ^
-            lstate_p[(47 - 10) / 2].value ^ lstate_p[(47 - 12) / 2].value ^ lstate_p[(47 - 14) / 2].value ^
-            lstate_p[(47 - 24) / 2].value ^ lstate_p[(47 - 42) / 2].value;
+                lstate_p[(47 - 10) / 2].value ^ lstate_p[(47 - 12) / 2].value ^ lstate_p[(47 - 14) / 2].value ^
+                lstate_p[(47 - 24) / 2].value ^ lstate_p[(47 - 42) / 2].value;
         bitsliced_blocks++;
     }
     // bitslice every odd state to every block of even states

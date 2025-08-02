@@ -1072,7 +1072,7 @@ uint16_t mf1_toolbox_check_keys_of_sectors(
                 // key B found
                 skipKeyB = true;
                 out->found.b[i / 4] |= 0b1 << maskShift;
-                out->keys[i][1] = *(mf1_key_t*)&trailer[10];
+                out->keys[i][1] = *(mf1_key_t *)&trailer[10];
                 break;
             }
         }

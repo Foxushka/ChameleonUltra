@@ -1011,7 +1011,8 @@ class HFMFHardNested(ReaderRequiredUnit):
                     # Check if tag is still present before each run
                     current_scan = self.cmd.hf14a_scan()
                     if current_scan is None or len(current_scan) == 0 or current_scan[0]['uid'] != uid_bytes:
-                        print(f"{CR}   Error: Tag lost or changed before run {run_count}. Stopping acquisition attempt.{C0}")
+                        print(f"{CR}   Error: Tag lost or changed before run {
+                              run_count}. Stopping acquisition attempt.{C0}")
                         acquisition_goal_met = False  # Mark as failed
                         break  # Exit inner run loop for this attempt
 
@@ -1039,7 +1040,8 @@ class HFMFHardNested(ReaderRequiredUnit):
                         try:
                             nt, nt_enc, par = struct.unpack_from('!IIB', raw_nonces_bytes_this_run, offset)
                         except struct.error as unpack_err:
-                            print(f"{CR}   Error unpacking nonce data at offset {offset}: {unpack_err}. Skipping pair.{C0}")
+                            print(f"{CR}   Error unpacking nonce data at offset {
+                                  offset}: {unpack_err}. Skipping pair.{C0}")
                             continue
 
                         msb = (nt_enc >> 24) & 0xFF
@@ -1118,7 +1120,8 @@ class HFMFHardNested(ReaderRequiredUnit):
                     print(f"   {CR}Maximum attempts ({max_attempts}) reached without meeting criteria. Attack failed.{C0}")
                     return None  # Failed after max attempts
             else:  # Acquisition stopped due to error or tag loss
-                print(f"   {CR}Acquisition attempt {attempt + 1} stopped prematurely due to an error after {run_count} runs.{C0}")
+                print(f"   {CR}Acquisition attempt {
+                      attempt + 1} stopped prematurely due to an error after {run_count} runs.{C0}")
                 # Decide if we should retry or fail completely. Let's fail for now.
                 print(f"   {CR}Attack failed due to error during acquisition.{C0}")
                 return None  # Failed due to error
@@ -1213,7 +1216,8 @@ class HFMFHardNested(ReaderRequiredUnit):
 
             # 6. Process the result (using output_str read from the file)
             if ret_code != 0:
-                print(f"{CR}   Error: Hardnested exited with code {ret_code}. Check log: {os.path.abspath(output_log_path)}{C0}")
+                print(f"{CR}   Error: Hardnested exited with code {
+                      ret_code}. Check log: {os.path.abspath(output_log_path)}{C0}")
                 if output_str:
                     print(f"{CR}   Output captured:\n{output_str}{C0}")
                 return None
@@ -1410,7 +1414,8 @@ class HFMFStaticEncryptedNested(ReaderRequiredUnit):
                     continue
                 else:
                     print('Failed to find A key by fast method, trying all possible keys')
-                    keys = open(os.path.join(tempfile.gettempdir(), a_key_dic.replace('.dic', '_filtered.dic'))).readlines()
+                    keys = open(os.path.join(tempfile.gettempdir(),
+                                a_key_dic.replace('.dic', '_filtered.dic'))).readlines()
                     keys_bytes = []
                     for key in keys:
                         keys_bytes.append(bytes.fromhex(key.strip()))

@@ -123,7 +123,7 @@ static void print_progress_header(void) {
     get_SIMD_instruction_set(instr_set);
     snprintf(progress_text, sizeof(progress_text), "Start using "
              _YELLOW_("%d")
-                                                   " threads", num_CPUs());
+             " threads", num_CPUs());
 
     PrintAndLogEx(INFO, "Hardnested attack starting...");
     PrintAndLogEx(INFO,
@@ -261,7 +261,7 @@ static void init_bitflip_bitarrays(void) {
             if (p.input_buffer != NULL) {
                 uint32_t count = 0;
 
-                lzma_init_inflate(&strm, p.input_buffer, p.len, (uint8_t*)&count, sizeof(count));
+                lzma_init_inflate(&strm, p.input_buffer, p.len, (uint8_t *)&count, sizeof(count));
                 if ((float)count / (1 << 24) < IGNORE_BITFLIP_THRESHOLD) {
                     uint32_t *bitset = (uint32_t *)malloc_bitarray(sizeof(uint32_t) * (1 << 19));
                     if (bitset == NULL) {
@@ -748,12 +748,12 @@ static void update_sum_bitarrays(odd_even_t odd_even) {
         }
         for (uint16_t i = 0; i < 256; i++) {
             nonces[i].num_states_bitarray[odd_even] = count_bitarray_AND(nonces[i].states_bitarray[odd_even],
-                all_bitflips_bitarray[odd_even]);
+                    all_bitflips_bitarray[odd_even]);
         }
         for (uint8_t part_sum_a0 = 0; part_sum_a0 < NUM_PART_SUMS; part_sum_a0++) {
             for (uint8_t part_sum_a8 = 0; part_sum_a8 < NUM_PART_SUMS; part_sum_a8++) {
                 part_sum_count[odd_even][part_sum_a0][part_sum_a8] += count_bitarray_AND2(
-                        part_sum_a0_bitarrays[odd_even][part_sum_a0], part_sum_a8_bitarrays[odd_even][part_sum_a8]);
+                            part_sum_a0_bitarrays[odd_even][part_sum_a0], part_sum_a8_bitarrays[odd_even][part_sum_a8]);
             }
         }
         all_bitflips_bitarray_dirty[odd_even] = false;
@@ -846,7 +846,7 @@ static float sort_best_first_bytes(void) {
         uint16_t first_byte = best_first_bytes[i];
         for (uint8_t j = 0; j < NUM_SUMS && nonces[first_byte].sum_a8_guess[j].prob > 0.05; j++) {
             nonces[first_byte].sum_a8_guess[j].num_states = estimated_num_states(first_byte, sums[first_byte_Sum],
-                sums[nonces[first_byte].sum_a8_guess[j].sum_a8_idx]);
+                    sums[nonces[first_byte].sum_a8_guess[j].sum_a8_idx]);
         }
         // while (nonces[first_byte].sum_a8_guess[0].num_states == 0
         // || nonces[first_byte].sum_a8_guess[1].num_states == 0
@@ -1042,7 +1042,7 @@ __attribute__((force_align_arg_pointer))
                             if (bitflip_bitarrays[odd_even][bitflip] != NULL) {
                                 uint32_t old_count = nonces[i].num_states_bitarray[odd_even];
                                 nonces[i].num_states_bitarray[odd_even] = count_bitarray_AND(
-                                        nonces[i].states_bitarray[odd_even], bitflip_bitarrays[odd_even][bitflip]);
+                                            nonces[i].states_bitarray[odd_even], bitflip_bitarrays[odd_even][bitflip]);
                                 if (nonces[i].num_states_bitarray[odd_even] != old_count) {
                                     nonces[i].all_bitflips_dirty[odd_even] = true;
                                 }
@@ -1085,8 +1085,8 @@ __attribute__((force_align_arg_pointer))
                                     if (bitflip_bitarrays[odd_even][bitflip] != NULL) {
                                         uint32_t old_count = nonces[i].num_states_bitarray[odd_even];
                                         nonces[i].num_states_bitarray[odd_even] = count_bitarray_AND(
-                                                nonces[i].states_bitarray[odd_even],
-                                                bitflip_bitarrays[odd_even][bitflip]);
+                                                    nonces[i].states_bitarray[odd_even],
+                                                    bitflip_bitarrays[odd_even][bitflip]);
                                         if (nonces[i].num_states_bitarray[odd_even] != old_count) {
                                             nonces[i].all_bitflips_dirty[odd_even] = true;
                                         }
@@ -1168,7 +1168,7 @@ static void apply_sum_a0(void) {
     }
 }
 
-static int simulate_acquire_nonces(uint32_t uid, char* path) {
+static int simulate_acquire_nonces(uint32_t uid, char *path) {
     time_t time1 = time(NULL);
     last_sample_clock = 0;
     sample_period = 1000; // for simulation
@@ -1401,10 +1401,10 @@ static inline bool bitflips_match(uint8_t byte, uint32_t state, odd_even_t odd_e
         if (!quiet && known_target_key != -1 && state == test_state[odd_even]) {
             PrintAndLogEx(INFO, "Initial state lists: "
                           _YELLOW_("%s")
-                                " test state eliminated by bitflip property.", odd_even == EVEN_STATE ? "even" : "odd");
+                          " test state eliminated by bitflip property.", odd_even == EVEN_STATE ? "even" : "odd");
             snprintf(failstr, sizeof(failstr), "Initial "
                      _YELLOW_("%s")
-                                               " byte Bitflip property", odd_even == EVEN_STATE ? "even" : "odd");
+                     " byte Bitflip property", odd_even == EVEN_STATE ? "even" : "odd");
         }
 #endif
         return false;
@@ -1971,7 +1971,7 @@ mfnestedhard(uint8_t blockNo, uint8_t keyType, uint8_t *key, uint8_t trgBlockNo,
     return key_found;
 }
 
-char *run_hardnested(uint32_t uid, char* path) {
+char *run_hardnested(uint32_t uid, char *path) {
     uint64_t foundkey = 0;
     if (mfnestedhard(0, 0, NULL, 0, 0, NULL, false, false, false, &foundkey, NULL, uid, path) == 1) {
         char *keystr = malloc(14);

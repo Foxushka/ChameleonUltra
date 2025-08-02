@@ -36,7 +36,7 @@ typedef enum {
 
 
 bitflip_info get_bitflip(odd_even_t odd_num, uint16_t id);
-bool decompress(lzma_stream* strm);
+bool decompress(lzma_stream *strm);
 void lzma_init_inflate(lzma_stream *strm, uint8_t *inbuf, uint32_t inbuf_len, uint8_t *outbuf, uint32_t outbuf_len);
 void lzma_init_decoder(lzma_stream *strm);
 

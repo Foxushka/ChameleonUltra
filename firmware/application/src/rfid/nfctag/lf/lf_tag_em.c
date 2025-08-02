@@ -126,8 +126,8 @@ uint64_t em410x_id_to_memory64(uint8_t id[5]) {
     // Okay, it's the most critical time at present, and now you need to assign and calculate the Qiqi school inspection
     // 1. First assign the front guide code
     memory.bit.h00 = memory.bit.h01 = memory.bit.h02 =
-    memory.bit.h03 = memory.bit.h04 = memory.bit.h05 =
-    memory.bit.h06 = memory.bit.h07 = memory.bit.h08 = 1;
+                                          memory.bit.h03 = memory.bit.h04 = memory.bit.h05 =
+                                                  memory.bit.h06 = memory.bit.h07 = memory.bit.h08 = 1;
     //2. Assign the 8bit version or custom ID
     memory.bit.d00 = GETBIT(id[0], 7);
     memory.bit.d01 = GETBIT(id[0], 6);
