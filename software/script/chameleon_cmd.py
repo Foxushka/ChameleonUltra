@@ -43,7 +43,7 @@ class ChameleonCMD:
             Get device chip id
         """
         resp = self.device.send_cmd_sync(Command.GET_DEVICE_CHIP_ID)
-        if resp.status == Status.SUCCESS:
+        if resp.status     == Status.SUCCESS:
             resp.parsed = resp.data.hex()
         return resp
 
